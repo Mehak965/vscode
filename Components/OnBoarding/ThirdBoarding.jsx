@@ -2,8 +2,16 @@ import React from 'react';
 import { Image, View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import BG from '../../assets/Images/third.png';
 import Button from '../../assets/Images/firstB.png';
+import { useNavigation } from '@react-navigation/native'; 
 
 const ThirdBoarding = () => {
+    const navigation = useNavigation(); 
+    const handleNavigate=()=>{
+        return  navigation.reset({
+            index: 0,
+            routes: [{ name: 'WelcomeScreen' }], // Ensure 'OnboardingScreen' matches your navigation configuration
+          });
+    }
   return (
     <View style={styles.container}>
       <View style={styles.statusBar}>
@@ -23,7 +31,7 @@ const ThirdBoarding = () => {
         </Text>
       </View>
       <View style={styles.nextButton}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleNavigate}>
           <Image source={Button} style={styles.buttonImage} />
         </TouchableOpacity>
       </View>
