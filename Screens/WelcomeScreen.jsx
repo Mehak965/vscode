@@ -2,10 +2,12 @@ import React from 'react';
 import { Image, View, StyleSheet, Dimensions, Text } from 'react-native';
 import BG from '../assets/Images/Welcome-Screen.png';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native'; 
 
 const { width } = Dimensions.get('window'); // Get screen width
 
 const WelcomeScreen = () => {
+    const navigation = useNavigation(); 
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
@@ -18,7 +20,9 @@ const WelcomeScreen = () => {
         </Text>
       </View>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.primaryButton}>
+        <TouchableOpacity style={styles.primaryButton} onPress={()=>{
+            navigation.navigate('registration')
+        }}>
           <Text style={styles.buttonText1}>Create an Account</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.secondaryButton}>
