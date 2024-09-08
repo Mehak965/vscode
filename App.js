@@ -1,26 +1,22 @@
-import React from "react";
-import "react-native-gesture-handler";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Splash from "./Screens/SplashScreen";
-import LoginScreen from "./Screens/LoginScreen";
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import OnboardingScreen from './Screens/OnboardingScreen';
+import HomeScreen from './Screens/Home'; // This would be your main app screen
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
-const App = () => {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false, // Hide the default header if needed
-        }}
-      >
-        <Stack.Screen name="Splash" component={Splash} />
-        <Stack.Screen name="Login" component={LoginScreen} />
-        {/* Add more screens as needed */}
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-};
-
-export default App;
+export default function App() {
+    return (
+        <NavigationContainer>
+            <Stack.Navigator initialRouteName="Onboarding">
+                <Stack.Screen 
+                    name="Onboarding" 
+                    component={OnboardingScreen} 
+                    options={{ headerShown: false }} 
+                />
+                <Stack.Screen name="Home" component={HomeScreen} />
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
+}
