@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native'; 
 
 const Verify = () => {
+    const navigation = useNavigation(); 
   const [otp, setOtp] = useState(new Array(6).fill(""));
 
   const handleChange = (value, index) => {
@@ -20,10 +22,11 @@ const Verify = () => {
   };
 
   const handleVerify = () => {
-    // Join OTP digits to form a complete code
+    
     const otpCode = otp.join('');
     console.log('OTP Code:', otpCode);
-    // Add logic to handle OTP verification here (e.g., API call)
+    navigation.navigate('setPassword')
+   
   };
 
   return (
@@ -71,7 +74,7 @@ const styles = StyleSheet.create({
   },
   backButton: {
     position: 'absolute',
-    top: 20,
+    top: 50,
     left: 10,
   },
   backText: {
@@ -81,7 +84,7 @@ const styles = StyleSheet.create({
   verifyText: {
     flexDirection: 'column', // Equivalent to flex-direction: column
     justifyContent: 'center', // Center items vertically
-    marginTop: "30%",
+    marginTop: "35%",
     gap: 12, // Add space between items
   },
   title: {

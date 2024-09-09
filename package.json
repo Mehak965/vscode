@@ -9,7 +9,9 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo/vector-icons": "^14.0.2",
     "@react-native-community/checkbox": "^0.5.17",
+    "@react-native-picker/picker": "^2.8.0",
     "@react-navigation/native": "^6.1.18",
     "@react-navigation/stack": "^6.4.1",
     "expo": "~51.0.28",
@@ -17,7 +19,8 @@
     "react": "18.2.0",
     "react-native": "0.74.5",
     "react-native-gesture-handler": "^2.19.0",
-    "react-native-phone-number-input": "^2.1.0"
+    "react-native-phone-number-input": "^2.1.0",
+    "expo-image-picker": "~15.0.7"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

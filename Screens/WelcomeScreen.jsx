@@ -25,7 +25,9 @@ const WelcomeScreen = () => {
         }}>
           <Text style={styles.buttonText1}>Create an Account</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.secondaryButton}>
+        <TouchableOpacity style={styles.secondaryButton} onPress={()=>{
+            navigation.navigate('login')
+        }}>
           <Text style={styles.buttonText2}>Login</Text>
         </TouchableOpacity>
       </View>

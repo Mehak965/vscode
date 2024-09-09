@@ -1,42 +1,25 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image, Switch, Modal, FlatList, Animated } from 'react-native';
 import { useNavigation } from '@react-navigation/native'; 
-const RegistrationForm = () => {
-    const [isChecked, setIsChecked] = useState(false);
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const [name, setName] = useState(''); // State for name
-    const [email, setEmail] = useState(''); // State for email
-    const [modalVisible, setModalVisible] = useState(false);
-    const [selectedGender, setSelectedGender] = useState('Select Gender');
-    const [fadeAnim] = useState(new Animated.Value(0));
+import { Ionicons } from '@expo/vector-icons';
+const LoginForm = () => {
+ 
+    
+    const [password, setPassword] = useState(''); 
+    const [email, setEmail] = useState(''); 
+    const [showPassword, setShowPassword] = useState(false);
+    
+
     const navigation = useNavigation();
-     // Initial opacity value for fade-in
+   
 
-    const genderOptions = ['Male', 'Female'];
-
-    useEffect(() => {
-        if (modalVisible) {
-            // Fade-in effect for modal content
-            Animated.timing(fadeAnim, {
-                toValue: 1,
-                duration: 800,
-                useNativeDriver: true,
-            }).start();
-        } else {
-            // Reset opacity when modal is closed
-            fadeAnim.setValue(0);
-        }
-    }, [modalVisible]);
 
     const handleSubmit = () => {
         console.log('Form Submitted');
-        console.log('Name:', name);
+        console.log('Name:', password);
         console.log('Email:', email);
-        console.log('Phone Number:', phoneNumber);
-        console.log('Selected Gender:', selectedGender);
-        console.log('Terms Accepted:', isChecked);
         navigation.navigate('verify');
-        // Add logic to handle form submission (e.g., API call) here
+   
     };
 
     return (
@@ -49,7 +32,7 @@ const RegistrationForm = () => {
 
             <View style={styles.signupContainer}>
                 <Text style={styles.signupText}>
-                    Sign up with your email or {'\n'}
+                    Sign in with your email or {'\n'}
                     phone number
                 </Text>
             </View>
@@ -57,78 +40,37 @@ const RegistrationForm = () => {
             <View style={styles.form}>
                 <TextInput
                     style={styles.input}
-                    placeholder="Name"
-                    placeholderTextColor="#999"
-                    value={name}
-                    onChangeText={setName} // Update name state
-                />
-                <TextInput
-                    style={styles.input}
                     placeholder="Email"
                     placeholderTextColor="#999"
                     value={email}
-                    onChangeText={setEmail} // Update email state
+                    onChangeText={setEmail} // Update name state
                 />
-                <View style={styles.phoneInputContainer}>
+              <View style={styles.inputContainer}>
                     <TextInput
-                        style={[styles.input, styles.phoneInput]}
-                        placeholder="+92 Your mobile number"
+                        style={styles.input2}
+                        placeholder="Enter Your Password"
                         placeholderTextColor="#999"
-                        value={phoneNumber}
-                        onChangeText={setPhoneNumber} // Update phoneNumber state
+                        value={password}
+                        onChangeText={setPassword}
+                        secureTextEntry={!showPassword} // Toggle password visibility
                     />
+                    <TouchableOpacity
+                        style={styles.eyeIcon}
+                        onPress={() => setShowPassword(!showPassword)}
+                    >
+                        <Ionicons
+                            name={showPassword ? 'eye-off' : 'eye'}
+                            size={24}
+                            color="#999"
+                        />
+                    </TouchableOpacity>
                 </View>
-                <TouchableOpacity 
-                    style={[styles.input, styles.dropdown]} 
-                    onPress={() => setModalVisible(true)}
-                >
-                    <Text style={styles.dropdownText}>{selectedGender}</Text>
-                </TouchableOpacity>
-                
-                {/* Gender Dropdown Modal */}
-                <Modal
-                    transparent={true}
-                    visible={modalVisible}
-                    animationType="slide"
-                    onRequestClose={() => setModalVisible(false)}
-                >
-                    <View style={styles.modalContainer}>
-                        <View style={styles.modalContent}>
-                            <Animated.View style={{ ...styles.optionContainer, opacity: fadeAnim }}>
-                                <FlatList
-                                    data={genderOptions}
-                                    keyExtractor={(item) => item}
-                                    renderItem={({ item }) => (
-                                        <TouchableOpacity 
-                                            style={styles.option}
-                                            onPress={() => {
-                                                setSelectedGender(item);
-                                                setModalVisible(false);
-                                            }}
-                                        >
-                                            <Text style={styles.optionText}>{item}</Text>
-                                        </TouchableOpacity>
-                                    )}
-                                />
-                            </Animated.View>
-                        </View>
-                    </View>
-                </Modal>
+              
 
-                <View style={styles.termsContainer}>
-                    <Switch
-                        value={isChecked}
-                        onValueChange={(value) => setIsChecked(value)}
-                        thumbColor={isChecked ? '#008955' : '#f4f3f4'}
-                        trackColor={{ false: '#767577', true: '#81b0ff' }}
-                    />
-                    <Text style={styles.termsText}>
-                        By signing up, you agree to the <Text style={styles.linkText}>Terms of service {'\n'}</Text> and <Text style={styles.linkText}>Privacy policy</Text>.
-                    </Text>
-                </View>
+          
 
                 <TouchableOpacity style={styles.signupButton} onPress={handleSubmit}>
-                    <Text style={styles.signupButtonText}>Sign Up</Text>
+                    <Text style={styles.signupButtonText}>Sign In</Text>
                 </TouchableOpacity>
 
                 <View style={styles.dividerContainer}>
@@ -160,10 +102,10 @@ const RegistrationForm = () => {
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.signInContainer} onPress={()=>{
-                    navigation.navigate('login')
+                    navigation.navigate('registration')
                 }}>
                     <Text style={styles.signInText}>
-                        Already have an account? <Text style={styles.signInLink}>Sign in</Text>
+                        Already have an account? <Text style={styles.signInLink}>Sign up</Text>
                     </Text>
                 </TouchableOpacity>
             </View>
@@ -171,7 +113,7 @@ const RegistrationForm = () => {
     );
 };
 
-export default RegistrationForm;
+export default LoginForm;
 
 const styles = StyleSheet.create({
     container: {
@@ -205,6 +147,24 @@ const styles = StyleSheet.create({
     },
     form: {
         marginTop: 20,
+    },
+    inputContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: '#ccc',
+        borderRadius: 8,
+        paddingHorizontal: 15,
+        height: 54,
+        marginBottom: 15,
+    },
+    input2: {
+        flex: 1,
+        fontSize: 16,
+        color: '#333',
+    },
+    eyeIcon: {
+        padding: 5,
     },
     input: {
         width: '100%',
