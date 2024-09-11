@@ -4,10 +4,12 @@ import { Entypo } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import avatar from '../assets/Images/avatar.png';
 import CustomDropdown from './CustomDropdown';
+import { useNavigation } from '@react-navigation/native'; 
 
 const { width } = Dimensions.get('window');
 
 const ProfileForm = () => {
+  const navigation = useNavigation(); 
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedCity, setSelectedCity] = useState(null);
   const [selectedDistrict, setSelectedDistrict] = useState(null);
@@ -109,7 +111,9 @@ const ProfileForm = () => {
         <TouchableOpacity style={styles.cancelButton}>
           <Text style={styles.cancelButtonText}>Cancel</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.saveButton}>
+        <TouchableOpacity style={styles.saveButton} onPress={()=>{
+          navigation.navigate('home')
+        }}>
           <Text style={styles.saveButtonText}>Save</Text>
         </TouchableOpacity>
       </View>

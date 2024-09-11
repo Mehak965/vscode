@@ -9,6 +9,7 @@ import Verify from '../../Screens/Auth/Verify';
 import Login from '../../Screens/Auth/Login';
 import SetPassword from '../../Screens/Auth/SetPassowrd';
 import Profile from '../../Screens/Profile';
+import Home from '../../Screens/Home';
 
 const Stack = createStackNavigator();
 
@@ -33,6 +34,7 @@ export default function AppLayout() {
                 <Stack.Screen name="login" component={Login} />
                 <Stack.Screen name="setPassword" component={SetPassword} />
                 <Stack.Screen name="profile" component={Profile} />
+                <Stack.Screen name="home" component={Home} />
             </Stack.Navigator>
         </NavigationContainer>
     );
