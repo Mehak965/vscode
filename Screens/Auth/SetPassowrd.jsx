@@ -12,7 +12,8 @@ const SetPassword = () => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.backButton}>
+     
+      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
         <Text style={styles.backText}>Back</Text>
       </TouchableOpacity>
 

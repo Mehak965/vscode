@@ -64,8 +64,9 @@ const ProfileForm = () => {
   };
 
   return (
+    //back button
     <View style={styles.container}>
-      <TouchableOpacity style={styles.backButton}>
+      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
         <Text style={styles.backText}>Back</Text>
       </TouchableOpacity>
       <Text style={styles.title}>Profile</Text>
@@ -108,9 +109,12 @@ const ProfileForm = () => {
       />
 
       <View style={styles.buttonContainer}>
+         {/* cancel button */}
         <TouchableOpacity style={styles.cancelButton}>
           <Text style={styles.cancelButtonText}>Cancel</Text>
         </TouchableOpacity>
+        
+        {/* // save button */}
         <TouchableOpacity style={styles.saveButton} onPress={()=>{
           navigation.navigate('home')
         }}>

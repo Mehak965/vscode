@@ -42,7 +42,7 @@ const RegistrationForm = () => {
     return (
         <View style={styles.container}>
             <View style={styles.statusBar}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.goBack()}>
                     <Text style={styles.backText}>Back</Text>
                 </TouchableOpacity>
             </View>
@@ -90,8 +90,7 @@ const RegistrationForm = () => {
                     transparent={true}
                     visible={modalVisible}
                     animationType="slide"
-                    onRequestClose={() => setModalVisible(false)}
-                >
+                    onRequestClose={() => setModalVisible(false)}>
                     <View style={styles.modalContainer}>
                         <View style={styles.modalContent}>
                             <Animated.View style={{ ...styles.optionContainer, opacity: fadeAnim }}>
@@ -123,7 +122,8 @@ const RegistrationForm = () => {
                         trackColor={{ false: '#767577', true: '#81b0ff' }}
                     />
                     <Text style={styles.termsText}>
-                        By signing up, you agree to the <Text style={styles.linkText}>Terms of service {'\n'}</Text> and <Text style={styles.linkText}>Privacy policy</Text>.
+                        By signing up, you agree to the <Text style={styles.linkText}>Terms of service
+                             {'\n'}</Text> and <Text style={styles.linkText}>Privacy policy</Text>.
                     </Text>
                 </View>
 

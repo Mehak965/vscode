@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import BG from '../../assets/Images/At-anytime.png';
-import Button from '../../assets/Images/firstB.png';
+import Button from '../../assets/Images/button2.png';
 
 const SecondBoarding = ({ onNext }) => {
   return (

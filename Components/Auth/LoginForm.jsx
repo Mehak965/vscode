@@ -24,12 +24,12 @@ const LoginForm = () => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.statusBar}>
-                <TouchableOpacity>
+             <View style={styles.statusBar}>
+                <TouchableOpacity onPress={() => navigation.goBack()}>
                     <Text style={styles.backText}>Back</Text>
                 </TouchableOpacity>
             </View>
-
+            
             <View style={styles.signupContainer}>
                 <Text style={styles.signupText}>
                     Sign in with your email or {'\n'}
